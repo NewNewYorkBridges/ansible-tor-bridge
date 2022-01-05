@@ -1,0 +1,47 @@
+# SSH config
+- name: SSHD config file
+  template:
+    src: sshd_config.j2
+    dest: "/etc/ssh/sshd_config"
+    owner: "root"
+    group: "root"
+    mode: 0600
+  tags:
+    - ssh
+    - system_config
+    - install_all
+
+- name: SSHD restart
+  systemd:
+    name: sshd.service
+    daemon-reload: yes
+    state: restarted
+  tags:
+    - ssh
+    - system_config
+    - install_all
+
+
+# Auto upgrade
+- name: Unattended upgrades config file
+  template:
+    src: 50unattended-upgrades.j2
+    dest: "/etc/apt/apt.conf.d/50unattended-upgrades"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  tags:
+    - unattended_upgrades
+    - install_all
+
+- name: Auto upgrades config file
+  template:
+    src: 20auto-upgrades.j2
+    dest: "/etc/apt/apt.conf.d/20auto-upgrades"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  tags:
+    - auto_upgrades
+    - install_all
+

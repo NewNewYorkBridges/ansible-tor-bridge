@@ -1,0 +1,59 @@
+Port 22
+ListenAddress {{ ip_priv }}
+
+# Hardening
+Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+MACs    hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+
+# Forwading
+AllowTcpForwarding no
+X11Forwarding no
+
+# Log
+SyslogFacility AUTHPRIV
+LogLevel INFO
+
+# Auth
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 2
+LoginGraceTime 30 
+MaxSessions 10
+AuthorizedKeysFile	.ssh/authorized_keys
+PermitEmptyPasswords no
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+#KerberosUseKuserok yes
+
+# GSSAPI options
+GSSAPIAuthentication no
+#GSSAPICleanupCredentials no
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+#GSSAPIEnablek5users no
+
+UsePAM yes
+
+# Banner
+PrintMotd no
+Banner /etc/issue.net
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS
+
+
+{% if ansible_os_family == "RedHat" or ansible_os_family == "Rocky" %}
+Subsystem	sftp	/usr/libexec/openssh/sftp-server
+{% elif ansible_os_family == "Debian" %}
+Subsystem   sftp    /usr/lib/openssh/sftp-server
+{% endif %}
+

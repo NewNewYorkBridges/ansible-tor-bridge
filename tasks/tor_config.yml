@@ -1,0 +1,11 @@
+- name: TOR config file
+  template:
+    src: torrc.j2
+    dest: "/etc/tor/torrc"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  tags:
+    - tor_config
+    - install_all
+

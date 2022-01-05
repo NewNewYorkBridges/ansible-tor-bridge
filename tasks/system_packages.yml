@@ -1,0 +1,18 @@
+- name: Update system
+  apt:
+    name: "*"
+    update_cache: yes
+    state: latest
+  tags:
+    - install_system_packages
+    - update
+    - install_all
+
+- name: Packages installation
+  apt:
+    name: "{{ system_packages }}"
+    update_cache: yes
+    state: latest
+  tags:
+    - install_system_packages
+    - install_all

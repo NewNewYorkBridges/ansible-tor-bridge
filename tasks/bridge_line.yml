@@ -1,0 +1,60 @@
+- name: Get fingerprint
+  slurp: 
+    src: "{{ fingerprint_file }}"
+  register: fingerprint_file_content
+  tags:
+    - bridge_line
+
+- name: Get cert 
+  slurp: 
+    src: "{{ cert_file }}"
+  register: cert_file_content
+  tags:
+    - bridge_line
+
+- name: Register fingerprint
+  set_fact:
+    fingerprint: "{{ fingerprint_file_content.content | b64decode | regex_findall('[a-z]+ ([A-Z0-9]+)') }}"
+  tags:
+    - bridge_line
+
+- name: Register cert
+  set_fact:
+    cert: "{{ cert_file_content.content | b64decode | regex_findall('cert=(\\S+)') }}"
+  tags:
+    - bridge_line
+
+- name: Register result
+  set_fact:
+    bridge_line: "Bridge obfs4 {{ ansible_ens3.ipv4.address }}:{{ obfs4_port }} {{ fingerprint[0] }} cert={{ cert[0] }} iat-mode=0"
+  tags:
+    - bridge_line
+
+- name: Delete file if present
+  file:
+    path: "{{ bridge_line_file }}"
+    state: absent
+  ignore_errors: yes
+  delegate_to: localhost
+  tags:
+    - bridge_line
+
+- name: Create file 
+  file:
+    path: "{{ bridge_line_file }}"
+    state: touch
+  ignore_errors: yes
+  become: no
+  delegate_to: localhost
+  tags:
+    - bridge_line
+
+- name: Write value
+  ansible.builtin.lineinfile:
+    line: "{{ bridge_line }}"
+    path: "{{ bridge_line_file }}"
+  delegate_to: localhost
+  become: no
+  tags:
+    - bridge_line
+

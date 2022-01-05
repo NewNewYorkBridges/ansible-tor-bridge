@@ -1,0 +1,13 @@
+BridgeRelay 1
+
+ORPort {{ tor_port }}
+
+ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+
+ServerTransportListenAddr obfs4 0.0.0.0:{{ obfs4_port }}
+
+ExtORPort auto
+
+ContactInfo {{ email_address }}
+
+Nickname {{ inventory_hostname }}
