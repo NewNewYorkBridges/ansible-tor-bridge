@@ -61,3 +61,11 @@ Deploy the Tor Bridge nodes use the following command:
 Optional: you can print out the full bridge line of your nodes using the following command (the output is redirected in `/tmp/bridge.txt`):
 
 `ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -t bridge_line`
+
+## License
+
+GPLv3
+
+## Authors Information
+
+This role was created in 2022 by [Lilian BAZILLE](https://github.com/lilianbaz) and [AlphaCorvus](https://github.com/AlphaCorvus).
