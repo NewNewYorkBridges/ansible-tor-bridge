@@ -4,7 +4,7 @@ This Ansible role allows you to deploy and configure multiple Tor Bridge nodes.
 
 Currently this role is only supported on Debian. In future improvements we will support Red Hat systems.
 
-# Prerequisites
+## Prerequisites
 
 Prepare your Ansible Hosts file. You may use an email address that will be used for the contact info as per Tor Project's [documentation](https://community.torproject.org/relay/setup/bridge/).
 
@@ -41,7 +41,7 @@ email_address=alice@example.com
 
 Last but least, do not forget to change the variables `tor_port` and `obfs4_port`. Please avoid the ports 9001 because it's commonly associated with Tor and censors may be scanning the Internet for this port.
 
-# Usage
+## Usage
 
 First, clone this repository. Use the following playbook:
 
