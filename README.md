@@ -51,7 +51,7 @@ First, clone this repository. Use the following playbook:
   hosts: "{{ servers }}"
   become: yes
   roles:
-    - /etc/ansible/roles/ansible-tor-bridge
+    - alphacorvus.ansible_tor_bridge
 ```
 
 Deploy the Tor Bridge nodes use the following command: 
