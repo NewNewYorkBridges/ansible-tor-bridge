@@ -1,4 +1,4 @@
-- name: Redémarrage de tor
+- name: Restart Tor service
   systemd:
     name: tor
     daemon-reload: yes
@@ -7,7 +7,7 @@
     - restart
     - install_all
 
-- name: Rechargement de tor
+- name: Reload Tor service
   systemd:
     name: tor
     daemon-reload: yes
@@ -15,7 +15,7 @@
   tags:
     - reload
 
-- name: Arrêt de tor
+- name: Stop Tor service
   systemd:
     name: tor
     daemon-reload: yes
@@ -23,7 +23,7 @@
   tags:
     - stop
 
-- name: Activation de tor
+- name: Enabling Tor daemon service
   systemd:
     name: "tor@default"
     daemon-reload: yes
@@ -32,7 +32,7 @@
     - enable
     - install_all
 
-- name: Lancement de tor
+- name: Launching Tor service
   systemd:
     name: tor
     daemon-reload: yes

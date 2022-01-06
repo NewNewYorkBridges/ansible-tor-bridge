@@ -1,4 +1,4 @@
-- name: TOR config file
+- name: Configure Torrc file
   template:
     src: torrc.j2
     dest: "/etc/tor/torrc"
