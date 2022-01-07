@@ -58,9 +58,9 @@ Deploy the Tor Bridge nodes use the following command:
 
 `ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -t install_all`
 
-Optional: you can print out the full bridge line of your nodes using the following command (the output is redirected in `/tmp/bridge.txt`):
+Optional: you can print out the full bridge line of your nodes. You'll need to precise the public IP of your node with the variable `public_ip` (if your node has a public IP directly attached to an interface, you can do `public_ip=ansible_[ethX].ipv4.address`). The output is redirected in `/tmp/bridge.txt`:
 
-`ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -t bridge_line`
+`ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -e "public_ip={{ ansible_ens3.ipv4.address }}" -t bridge_line`
 
 ## License
 
