@@ -26,7 +26,7 @@
 
 - name: Register result
   set_fact:
-    bridge_line: "Bridge obfs4 {{ ansible_ens3.ipv4.address }}:{{ obfs4_port }} {{ fingerprint[0] }} cert={{ cert[0] }} iat-mode=0"
+    bridge_line: "Bridge obfs4 {{ public_ip }}:{{ obfs4_port }} {{ fingerprint[0] }} cert={{ cert[0] }} iat-mode=0"
   tags:
     - bridge_line
 
