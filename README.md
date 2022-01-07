@@ -12,13 +12,13 @@ If you want to associate bridges to a different user you are free to create mult
 
 ```
 [bridgesA]
-host1 ip_priv=192.168.1.100 tor_port=1234 obfs4_port=12345
+host1 tor_port=1234 obfs4_port=12345
 
 [bridgesA:vars]
 email_address=alice@example.com
 
 [bridgesB]
-host2 ip_priv=192.168.1.101 tor_port=1234 obfs4_port=12345
+host2 tor_port=1234 obfs4_port=12345
 
 [bridgesB:vars]
 email_address=bob@example.com
@@ -32,8 +32,8 @@ Of course you can have a single group:
 
 ```
 [bridges]
-host1 ip_priv=192.168.1.100 tor_port=1234 obfs4_port=12345
-host2 ip_priv=192.168.1.101 tor_port=1234 obfs4_port=12345
+host1 tor_port=1234 obfs4_port=12345
+host2 tor_port=1234 obfs4_port=12345
 
 [bridges:vars]
 email_address=alice@example.com

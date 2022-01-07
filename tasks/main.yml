@@ -1,7 +1,7 @@
 ---
 # tasks file for bridge
 - import_tasks: system_packages.yml
-- import_tasks: system_config.yml
+- import_tasks: update_config.yml
 - import_tasks: tor_packages.yml
 - import_tasks: tor_config.yml
 - import_tasks: service.yml

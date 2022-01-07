@@ -1,27 +1,3 @@
-# SSH config
-- name: SSHD config file
-  template:
-    src: sshd_config.j2
-    dest: "/etc/ssh/sshd_config"
-    owner: "root"
-    group: "root"
-    mode: 0600
-  tags:
-    - ssh
-    - system_config
-    - install_all
-
-- name: SSHD restart
-  systemd:
-    name: sshd.service
-    daemon-reload: yes
-    state: restarted
-  tags:
-    - ssh
-    - system_config
-    - install_all
-
-
 # Auto upgrade
 - name: Unattended upgrades config file
   template:
