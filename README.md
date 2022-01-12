@@ -62,11 +62,24 @@ The following playbook can be used:
 
 Deploy the Tor Bridge nodes use the following command: 
 
-`ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -t install_all`
+```
+$ ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -t install_all
+```
 
-Optional: you can print out the full bridge line of your nodes. You'll need to precise the public IP of your node with the variable `public_ip` (if your node has a public IP directly attached to an interface, you can do `public_ip=ansible_[ethX].ipv4.address`). The output is redirected in `/tmp/bridge.txt`:
+**Optional**: you can print out the full bridge line of your nodes. You'll need to precise the public IP of your node with the variable `public_ip` (if your node has a public IP directly attached to an interface, you can do `public_ip=ansible_[ethX].ipv4.address`). The output is redirected in `/tmp/bridge.txt`:
 
-`ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -e "public_ip={{ ansible_ens3.ipv4.address }}" -t bridge_line`
+```
+$ ansible-playbook /etc/ansible/playbooks/deploy_bridge.yml -e "servers=bridges" -e "public_ip={{ ansible_ens3.ipv4.address }}" -t bridge_line
+```
+
+Output:
+```
+$ cat /tmp/bridge.txt
+Bridge obfs4 14.XX.XX.XX:24XXX F17C53823026E4FD0DXF7D1448F23BAE084F255X cert=Xp7nXXXXX/egXo2YrHv6qOlRE9Ar8t6vvUVXXXXXXXXXXXXTLREiNXXXR8dvDyTgDz iat-mode=0
+Bridge obfs4 145.XX.XX.XX:24XXX F17C62823426E4FD0DAF7D1498F3BA2084F544Z cert=Xp7nXXXXX/egXo2YrHv6qOlRE9Ar8t6vvUVXXXXXXXXXXXXTUEHiY6nZZdvDyTgDw iat-mode=0
+Bridge obfs4 84.XX.XX.XX:2411X F17C64883026E4FD0DDF7D1418F81BA5084F525A cert=Xp7nXXXXX/egXo2YrHv6qOlRE9Ar8t6vvUVXXXXXXXXXXXXTLDViC6nUZZZyTgDy iat-mode=0
+...
+```
 
 ## License
 
