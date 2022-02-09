@@ -1,2 +1,2 @@
 ---
-# defaults file for bridge
+bridge_line_file: /tmp/bridge.txt

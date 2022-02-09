@@ -1,0 +1,14 @@
+---
+system_packages:
+  - ca_root_nss
+
+tor_packages:
+  - tor
+  - obfs4proxy-tor
+
+torrc_path: /usr/local/etc/tor/torrc
+torrc_group: wheel
+obfs4_path: /usr/local/bin/obfs4proxy
+
+fingerprint_file: /var/db/tor/fingerprint
+cert_file: /var/db/tor/pt_state/obfs4_bridgeline.txt

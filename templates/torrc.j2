@@ -2,7 +2,7 @@ BridgeRelay 1
 
 ORPort {{ tor_port }}
 
-ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+ServerTransportPlugin obfs4 exec {{ obfs4_path }}
 
 ServerTransportListenAddr obfs4 0.0.0.0:{{ obfs4_port }}
 
