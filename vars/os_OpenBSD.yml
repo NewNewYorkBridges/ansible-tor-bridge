@@ -1,0 +1,13 @@
+---
+system_packages: []
+
+tor_packages:
+  - tor
+  - obfs4proxy
+
+torrc_path: /etc/tor/torrc
+torrc_group: wheel
+obfs4_path: /usr/local/bin/obfs4proxy
+
+fingerprint_file: "{{ ansible_env.HOME }}/.tor/fingerprint"
+cert_file: "{{ ansible_env.HOME }}/.tor/pt_state/obfs4_bridgeline.txt"

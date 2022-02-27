@@ -1,0 +1,12 @@
+- name: Enable Tor service
+  service:
+    name: tor
+    enabled: yes
+  tags:
+    - enable
+    - install_all
+
+- name: Start Tor service
+  service:
+    name: tor
+    state: started
