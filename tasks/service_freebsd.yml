@@ -1,0 +1,44 @@
+- name: Enable set Tor uid
+  community.general.sysrc:
+    name: tor_uid
+    value: "YES"
+    state: present
+  tags:
+    - enable
+    - install_all
+
+- name: Enable Tor
+  community.general.sysrc:
+    name: tor_enable
+    value: "YES"
+    state: present
+  tags:
+    - enable
+    - install_all
+
+- name: Restart Tor service
+  service:
+    name: tor
+    state: restarted
+  tags:
+    - restart
+    - install_all
+
+- name: Reload Tor service
+  service:
+    name: tor
+    state: reloaded
+  tags:
+    - reload
+
+- name: Stop Tor service
+  service:
+    name: tor
+    state: stopped
+  tags:
+    - stop
+
+- name: Start Tor service
+  service:
+    name: tor
+    state: started

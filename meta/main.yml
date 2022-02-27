@@ -12,6 +12,10 @@ galaxy_info:
     - name: Debian
       versions:
         - all
+    - name: FreeBSD
+      versions:
+        - 12.2
+        - 13.0
   galaxy_tags:
     - tor
     - tor-bridges

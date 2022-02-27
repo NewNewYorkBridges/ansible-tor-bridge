@@ -2,7 +2,7 @@
 
 This Ansible role allows you to deploy and configure multiple Tor Bridge nodes.
 
-Currently this role is only supported on Debian. In future improvements we will support other distributions.
+Currently this role is only supported on Debian and FreeBSD. In future improvements we will support other distributions.
 
 ## Installation
 

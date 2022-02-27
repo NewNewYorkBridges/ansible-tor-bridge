@@ -1,0 +1,23 @@
+- name: Ensure FreeBSD conf directory exists
+  file:
+    path: /usr/local/etc/pkg/repos
+    state: directory
+  tags:
+    - install_all
+
+- name: Configure FreeBSD to use HTTPS
+  copy:
+    content: |
+      FreeBSD: {
+        url: pkg+https://pkg.freebsd.org/${ABI}/latest
+      }
+    dest: /usr/local/etc/pkg/repos/FreeBSD.conf
+  tags:
+    - install_all
+
+- name: Packages installation (FreeBSD)
+  pkgng:
+    name: "{{ system_packages }}"
+    state: latest
+  tags:
+    - install_all

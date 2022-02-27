@@ -1,11 +1,17 @@
 - name: Configure Torrc file
   template:
     src: torrc.j2
-    dest: "/etc/tor/torrc"
+    dest: "{{ torrc_path }}"
     owner: "root"
-    group: "root"
+    group: "{{ torrc_group }}"
     mode: 0644
   tags:
     - tor_config
     - install_all
 
+- name: Configure net.inet.ip.random_id
+  ansible.posix.sysctl:
+    name: net.inet.ip.random_id
+    value: "1"
+    state: present
+  when: ansible_os_family == 'FreeBSD'

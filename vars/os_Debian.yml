@@ -1,16 +1,17 @@
 ---
-# vars file for bridge
-
 system_packages:
   - unattended-upgrades
   - apt-listchanges
   - apt-transport-https
 
 tor_packages:
-  - tor 
+  - tor
   - deb.torproject.org-keyring
   - obfs4proxy
 
+torrc_path: /etc/tor/torrc
+torrc_group: root
+obfs4_path: /usr/bin/obfs4proxy
+
 fingerprint_file: /var/lib/tor/fingerprint
 cert_file: /var/lib/tor/pt_state/obfs4_bridgeline.txt
-bridge_line_file: /tmp/bridge.txt

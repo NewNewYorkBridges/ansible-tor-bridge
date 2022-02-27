@@ -1,8 +1,22 @@
 ---
 # tasks file for bridge
+- name: Set OS specific variables
+  include_vars: "os_{{ ansible_os_family }}.yml"
+  tags:
+    - always
 - import_tasks: system_packages.yml
+  when: ansible_os_family == 'Debian'
+- import_tasks: system_packages_freebsd.yml
+  when: ansible_os_family == 'FreeBSD'
 - import_tasks: update_config.yml
+  when: ansible_os_family == 'Debian'
 - import_tasks: tor_packages.yml
+  when: ansible_os_family == 'Debian'
+- import_tasks: tor_packages_freebsd.yml
+  when: ansible_os_family == 'FreeBSD'
 - import_tasks: tor_config.yml
 - import_tasks: service.yml
+  when: ansible_os_family == 'Debian'
+- import_tasks: service_freebsd.yml
+  when: ansible_os_family == 'FreeBSD'
 - import_tasks: bridge_line.yml
