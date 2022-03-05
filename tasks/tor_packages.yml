@@ -1,7 +1,7 @@
 # Tor repo
 - name: Configuring Tor repository
-  copy:
-    src: tor.list
+  template:
+    src: tor.list.j2
     dest: "/etc/apt/sources.list.d/tor.list"
     owner: "root"
     group: "root"
