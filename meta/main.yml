@@ -16,6 +16,9 @@ galaxy_info:
       versions:
         - 12.2
         - 13.0
+    - name: OpenBSD
+      versions:
+        - 6.9
   galaxy_tags:
     - tor
     - tor-bridges

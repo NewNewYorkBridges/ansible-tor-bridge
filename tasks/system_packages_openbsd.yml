@@ -1,0 +1,10 @@
+- name: Install M:Tier openup
+  get_url:
+    url: https://stable.mtier.org/openup
+    dest: /usr/local/bin/openup
+    mode: 0755
+  tags:
+    - install_all
+
+- name: Run openup
+  shell: "/usr/local/bin/openup -N"

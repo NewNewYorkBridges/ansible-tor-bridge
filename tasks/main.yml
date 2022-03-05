@@ -8,15 +8,21 @@
   when: ansible_os_family == 'Debian'
 - import_tasks: system_packages_freebsd.yml
   when: ansible_os_family == 'FreeBSD'
+- import_tasks: system_packages_openbsd.yml
+  when: ansible_os_family == 'OpenBSD'
 - import_tasks: update_config.yml
   when: ansible_os_family == 'Debian'
 - import_tasks: tor_packages.yml
   when: ansible_os_family == 'Debian'
 - import_tasks: tor_packages_freebsd.yml
   when: ansible_os_family == 'FreeBSD'
+- import_tasks: tor_packages_openbsd.yml
+  when: ansible_os_family == 'OpenBSD'
 - import_tasks: tor_config.yml
 - import_tasks: service.yml
   when: ansible_os_family == 'Debian'
 - import_tasks: service_freebsd.yml
   when: ansible_os_family == 'FreeBSD'
+- import_tasks: service_openbsd.yml
+  when: ansible_os_family == 'OpenBSD'
 - import_tasks: bridge_line.yml

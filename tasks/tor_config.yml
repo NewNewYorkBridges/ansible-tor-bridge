@@ -51,3 +51,19 @@
     value: "1"
     state: present
   when: ansible_os_family == 'FreeBSD'
+
+- name: Configure kern.maxfiles
+  ansible.posix.sysctl:
+    name: kern.maxfiles
+    value: 16000
+    state: present
+  when: ansible_os_family == 'OpenBSD'
+
+- name: Add configuration to login.conf
+  blockinfile:
+    path: /etc/login.conf
+    block: |
+      tor:\
+        :openfiles-max=13500:\
+        :tc=daemon:
+  when: ansible_os_family == 'OpenBSD'

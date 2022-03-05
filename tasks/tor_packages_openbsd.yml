@@ -1,0 +1,7 @@
+- name: Install Tor packages
+  openbsd_pkg:
+    name: "{{ tor_packages }}"
+    state: latest
+  tags:
+    - tor_packages
+    - install_all
