@@ -14,7 +14,7 @@
     path: /usr/bin/obfs4proxy
     capability: 'cap_net_bind_service=+ep'
     state: present
-  when: obfs4_port < 1024
+  when: obfs4_port < 1024 and ansible_os_family == 'Debian'
   tags:
     - tor_config
     - install_all
@@ -27,7 +27,7 @@
   with_items:
     - "tor@default.service"
     - "tor@.service"
-  when: obfs4_port < 1024
+  when: obfs4_port < 1024 and ansible_os_family == 'Debian'
   tags:
     - tor_config
     - install_all
@@ -40,7 +40,7 @@
   with_items:
     - "tor@default.service"
     - "tor@.service"
-  when: obfs4_port < 1024
+  when: obfs4_port < 1024 and ansible_os_family == 'Debian'
   tags:
     - tor_config
     - install_all
