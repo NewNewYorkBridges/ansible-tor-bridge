@@ -3,6 +3,7 @@ system_packages:
   - unattended-upgrades
   - apt-listchanges
   - apt-transport-https
+  - gpg
 
 tor_packages:
   - tor
