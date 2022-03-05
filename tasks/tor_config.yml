@@ -9,6 +9,42 @@
     - tor_config
     - install_all
 
+- name: Set cap_net_bind_service on obfs4
+  capabilities:
+    path: /usr/bin/obfs4proxy
+    capability: 'cap_net_bind_service=+ep'
+    state: present
+  when: obfs4_port < 1024
+  tags:
+    - tor_config
+    - install_all
+
+- name: Override systemd configuration to use privileged ports
+  file:
+    state: directory
+    path: "/etc/systemd/system/{{ item }}.d"
+    recurse: yes
+  with_items:
+    - "tor@default.service"
+    - "tor@.service"
+  when: obfs4_port < 1024
+  tags:
+    - tor_config
+    - install_all
+
+- name: Override systemd configuration to use privileged ports
+  copy:
+    src: systemd_override.conf
+    dest: "/etc/systemd/system/{{ item }}.d/override.conf"
+    mode: 0644
+  with_items:
+    - "tor@default.service"
+    - "tor@.service"
+  when: obfs4_port < 1024
+  tags:
+    - tor_config
+    - install_all
+    
 - name: Configure net.inet.ip.random_id
   ansible.posix.sysctl:
     name: net.inet.ip.random_id

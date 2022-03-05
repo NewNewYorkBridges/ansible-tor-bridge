@@ -4,7 +4,6 @@ system_packages:
   - apt-listchanges
   - apt-transport-https
   - gpg
-  - runit-helper
 
 tor_packages:
   - tor
