@@ -1,0 +1,51 @@
+- name: Update system
+  dnf:
+    name: "*"
+    state: latest
+  tags:
+    - install_system_packages
+    - update
+    - install_all
+
+- name: Enable PowerTools (Rocky8 / CentOS8)
+  ini_file:
+    path: "/etc/yum.repos.d/{{ ansible_distribution }}-PowerTools.repo"
+    section: powertools
+    option: enabled
+    value: "1"
+  when:
+    - ansible_distribution in [ "CentOS", "Rocky" ]
+    - ansible_distribution_major_version == "8"
+  tags:
+    - install_system_packages
+    - install_all
+
+- name: Enable PowerTools (RHEL8)
+  rhsm_repository:
+    name: "codeready-builder-for-rhel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}-rpms"
+    state: enabled
+  when:
+    - ansible_distribution == "RedHat"
+    - ansible_distribution_major_version == "8"
+  tags:
+    - install_system_packages
+    - install_all
+
+- name: Installing EPEL
+  dnf:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: "latest"
+    disable_gpg_check: yes
+  when: ansible_distribution in [ "CentOS", "Rocky", "RedHat" ]
+  tags:
+    - install_system_packages
+    - install_all
+
+- name: Packages installation
+  dnf:
+    name: "{{ system_packages }}"
+    state: latest
+  tags:
+    - install_system_packages
+    - install_all
+

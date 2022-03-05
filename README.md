@@ -2,7 +2,7 @@
 
 This Ansible role allows you to deploy and configure multiple Tor Bridge nodes.
 
-Currently this role is only supported on Debian, FreeBSD, and OpenBSD. In future improvements we will support other distributions.
+Currently this role is supported on Debian, RHEL, Fedora, FreeBSD, and OpenBSD. In future improvements we will support other distributions.
 
 ## Installation
 
@@ -87,4 +87,6 @@ GPLv3
 
 ## Authors Information
 
-This role was created in 2022 by [Lilian BAZILLE](https://github.com/lilianbaz) and [AlphaCorvus](https://github.com/AlphaCorvus).
+This role was originally created in 2022 by [Lilian BAZILLE](https://github.com/lilianbaz) and [AlphaCorvus](https://github.com/AlphaCorvus).
+
+Support for FreeBSD and OpenBSD added by [pjsier](https://github.com/pjsier).

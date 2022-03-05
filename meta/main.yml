@@ -12,6 +12,15 @@ galaxy_info:
     - name: Debian
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - 20.04
+    - name: EL
+      versions:
+        - 8
+    - name: Fedora
+      versions:
+        - 35 
     - name: FreeBSD
       versions:
         - 12.2

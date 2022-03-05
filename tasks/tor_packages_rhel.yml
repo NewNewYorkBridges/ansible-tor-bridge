@@ -1,0 +1,46 @@
+# Tor repo
+- name: Configuring Tor repository
+  template:
+    src: tor.repo.j2
+    dest: "/etc/yum.repos.d/Tor.repo"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  tags:
+    - tor_repo
+    - install_all
+
+- name: Tor packages installation
+  dnf:
+    name: "{{ tor_packages }}"
+    state: latest
+  tags:
+    - tor_packages
+    - install_all
+
+- name: Create OBFS4 building dir
+  file:
+    state: directory
+    path: "{{ obfs4_build_dir }}"
+    recurse: yes
+  tags:
+    - tor_packages
+    - install_all
+
+- name: Build OBFS4
+  command: "go get {{ obfs4_url }}"
+  environment:
+    GOPATH: "{{ obfs4_build_dir }}"
+  tags:
+    - tor_packages
+    - install_all
+
+- name: Move OBFS4 binary
+  copy:
+    src: "{{ obfs4_build_dir }}/bin/obfs4proxy"
+    dest: "{{ obfs4_path }}"
+    remote_src: yes
+  tags:
+    - tor_packages
+    - install_all
+

@@ -1,0 +1,18 @@
+---
+system_packages: 
+  - git
+  - golang
+  - policycoreutils-python-utils
+
+tor_packages:
+  - tor
+
+torrc_path: /etc/tor/torrc
+torrc_group: root
+obfs4_path: /usr/bin/obfs4proxy
+
+fingerprint_file: /var/lib/tor/fingerprint
+cert_file: /var/lib/tor/pt_state/obfs4_bridgeline.txt
+
+obfs4_url: "gitlab.com/yawning/obfs4.git/obfs4proxy"
+obfs4_build_dir: "/tmp/obfs4"

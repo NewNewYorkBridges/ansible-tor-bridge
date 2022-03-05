@@ -4,23 +4,33 @@
   include_vars: "os_{{ ansible_os_family }}.yml"
   tags:
     - always
-- import_tasks: system_packages.yml
+
+# System preparation
+- import_tasks: system_packages_debian.yml
   when: ansible_os_family == 'Debian'
+- import_tasks: system_packages_rhel.yml
+  when: ansible_os_family == 'RedHat'
 - import_tasks: system_packages_freebsd.yml
   when: ansible_os_family == 'FreeBSD'
 - import_tasks: system_packages_openbsd.yml
   when: ansible_os_family == 'OpenBSD'
-- import_tasks: update_config.yml
+
+# Tor installation
+- import_tasks: tor_packages_debian.yml
   when: ansible_os_family == 'Debian'
-- import_tasks: tor_packages.yml
-  when: ansible_os_family == 'Debian'
+- import_tasks: tor_packages_rhel.yml
+  when: ansible_os_family == 'RedHat'
 - import_tasks: tor_packages_freebsd.yml
   when: ansible_os_family == 'FreeBSD'
 - import_tasks: tor_packages_openbsd.yml
   when: ansible_os_family == 'OpenBSD'
+
+# Tor config
 - import_tasks: tor_config.yml
-- import_tasks: service.yml
-  when: ansible_os_family == 'Debian'
+
+# Service
+- import_tasks: service_linux.yml
+  when: ansible_os_family in ['Debian', 'RedHat']
 - import_tasks: service_freebsd.yml
   when: ansible_os_family == 'FreeBSD'
 - import_tasks: service_openbsd.yml
