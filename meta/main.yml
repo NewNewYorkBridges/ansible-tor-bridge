@@ -6,7 +6,7 @@ galaxy_info:
   description: Role to deploy and configure Tor Bridges nodes
   company: "NewNewYork"
   issue_tracker_url: http://github.com/NewNewYorkBridges/ansible-tor-bridge/issues
-  license: "licence (Apache)"
+  license: licence GPLv3
   min_ansible_version: 2.1
   platforms:
     - name: Debian
@@ -14,7 +14,7 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - 20.04
+        - focal
     - name: EL
       versions:
         - 8
