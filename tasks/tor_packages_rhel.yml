@@ -1,5 +1,5 @@
 # Tor repo
-- name: Configuring Tor repository
+- name: Configuring Tor repository (EL)
   template:
     src: tor.repo.j2
     dest: "/etc/yum.repos.d/Tor.repo"
@@ -10,10 +10,20 @@
     - tor_repo
     - install_all
 
-- name: Tor packages installation
+- name: Tor packages installation (EL8)
   dnf:
     name: "{{ tor_packages }}"
     state: latest
+  when: ansible_distribution_major_version == "8"
+  tags:
+    - tor_packages
+    - install_all
+
+- name: Tor packages installation (EL7)
+  yum:
+    name: "{{ tor_packages }}"
+    state: latest
+  when: ansible_distribution_major_version == "7"
   tags:
     - tor_packages
     - install_all
