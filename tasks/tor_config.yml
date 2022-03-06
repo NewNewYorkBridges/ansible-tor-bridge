@@ -27,6 +27,7 @@
     port: "{{ item }}/tcp"
     permanent: yes
     state: enabled
+  ignore_errors: yes
   with_items:
     - "{{ tor_port }}"
     - "{{ obfs4_port }}"
@@ -39,6 +40,7 @@
   systemd:
     name: firewalld.service
     state: restarted
+  ignore_errors: yes
   when: ansible_os_family == 'RedHat'
   tags:
     - tor_config
