@@ -1,8 +1,8 @@
-- name: Update system (EL8)
+- name: Update system (EL8 / Fedora)
   dnf:
     name: "*"
     state: latest
-  when: ansible_distribution_major_version == "8"
+  when: ansible_distribution == "Fedora" or ansible_distribution_major_version == "8"
   tags:
     - install_system_packages
     - update
@@ -66,11 +66,11 @@
     - install_system_packages
     - install_all
 
-- name: Packages installation (EL8)
+- name: Packages installation (EL8 / Fedora)
   dnf:
     name: "{{ system_packages_el8 }}"
     state: latest
-  when: ansible_distribution_major_version == "8"
+  when: ansible_distribution == "Fedora" or ansible_distribution_major_version == "8"
   tags:
     - install_system_packages
     - install_all

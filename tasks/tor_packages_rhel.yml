@@ -1,5 +1,5 @@
 # Tor repo
-- name: Configuring Tor repository (EL)
+- name: Configuring Tor repository (EL / Fedora)
   template:
     src: tor.repo.j2
     dest: "/etc/yum.repos.d/Tor.repo"
@@ -10,11 +10,11 @@
     - tor_repo
     - install_all
 
-- name: Tor packages installation (EL8)
+- name: Tor packages installation (EL8 / Fedora)
   dnf:
     name: "{{ tor_packages }}"
     state: latest
-  when: ansible_distribution_major_version == "8"
+  when: ansible_distribution == "Fedora" or ansible_distribution_major_version == "8"
   tags:
     - tor_packages
     - install_all
@@ -49,6 +49,7 @@
   copy:
     src: "{{ obfs4_build_dir }}/bin/obfs4proxy"
     dest: "{{ obfs4_path }}"
+    mode: "0755"
     remote_src: yes
   tags:
     - tor_packages
