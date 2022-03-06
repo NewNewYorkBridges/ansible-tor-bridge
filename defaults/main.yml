@@ -1,2 +1,7 @@
 ---
 bridge_line_file: /tmp/bridge.txt
+
+
+additionnal_torrc_config:
+  - name: "PublishServerDescriptor"
+    value: "bridge"
