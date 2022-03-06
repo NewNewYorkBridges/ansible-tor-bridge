@@ -1,6 +1,9 @@
 ---
 bridge_line_file: /tmp/bridge.txt
 
+nickname: "{{ inventory_hostname }}"
+extorport: "auto"
+obfs4_ip: "0.0.0.0"
 
 additionnal_torrc_config:
   - name: "PublishServerDescriptor"

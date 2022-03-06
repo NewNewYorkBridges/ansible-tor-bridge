@@ -4,16 +4,15 @@ ORPort {{ tor_port }}
 
 ServerTransportPlugin obfs4 exec {{ obfs4_path }}
 
-ServerTransportListenAddr obfs4 0.0.0.0:{{ obfs4_port }}
+ServerTransportListenAddr obfs4 {{ obfs4_ip }}:{{ obfs4_port }}
 
-ExtORPort auto
+ExtORPort {{ extorport }}
 
 ContactInfo {{ email_address }}
 
-Nickname {{ inventory_hostname }}
+Nickname {{ nickname }}
 
 {% for item in additionnal_torrc_config %}
-
 {{ item.name }} {{ item.value }}
 
 {% endfor %}
