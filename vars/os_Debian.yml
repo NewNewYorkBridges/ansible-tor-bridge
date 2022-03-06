@@ -6,8 +6,8 @@ system_packages:
   - gpg
 
 tor_packages:
-  - tor-geoipdb
   - tor
+  - tor-geoipdb
   - deb.torproject.org-keyring
   - obfs4proxy
 
