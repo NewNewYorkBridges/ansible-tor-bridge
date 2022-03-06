@@ -2,7 +2,16 @@
 
 This Ansible role allows you to deploy and configure multiple Tor Bridge nodes.
 
-Currently this role is supported on Debian, RHEL, Fedora, FreeBSD, and OpenBSD. In future improvements we will support other distributions.
+## Supported Operating Systems
+
+- Debian 11
+- Ubuntu 20.4
+- OpenBSD 6.9
+- FreeBSD 12.3
+- FreeBSD 13.0
+- RHEL / CentOS / Rocky Linux 8
+- RHEL / CentOS 7
+- Fedora 35
 
 ## Installation
 
@@ -80,6 +89,10 @@ Bridge obfs4 145.XX.XX.XX:24XXX F17C62823426E4FD0DAF7D1498F3BA2084F544Z cert=Xp7
 Bridge obfs4 84.XX.XX.XX:2411X F17C64883026E4FD0DDF7D1418F81BA5084F525A cert=Xp7nXXXXX/egXo2YrHv6qOlRE9Ar8t6vvUVXXXXXXXXXXXXTLDViC6nUZZZyTgDy iat-mode=0
 ...
 ```
+
+## About Vars
+
+You will find default values in `default/main.yml` corresponding to parameters in the `torrc` config file. You can override the config in your host file, your playbook or in the `vars` folder. Modify the `vars` file corresponding to the operating system used.
 
 ## License
 
