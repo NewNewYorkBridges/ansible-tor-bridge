@@ -14,7 +14,7 @@
 
 - name: Register fingerprint
   set_fact:
-    fingerprint: "{{ fingerprint_file_content.content | b64decode | regex_findall('[a-z]+ ([A-Z0-9]+)') }}"
+    fingerprint: "{{ fingerprint_file_content.content | b64decode | regex_findall('[a-zA-Z0-9]+ ([A-Z0-9]+)') }}"
   tags:
     - bridge_line
 
